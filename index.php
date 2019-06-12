@@ -16,21 +16,23 @@
 </style>
 </head>
 <body>
-<h1>Register here!</h1>
-<p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+<h1>Hi, Rempah Team!</h1>
+<p>Please fill your name, email, and job, then click <strong>Submit</strong> to register.</p>
 <form method="post" action="index.php">
       Name  <input type="text" name="name" id="name"/></br>
       Email <input type="text" name="email" id="email"/></br>
+      Job  <input type="text" name="job" id="job"/></br>
+    
       <input type="submit" name="submit" value="Submit" />
 </form>
 <?php
     // DB connection info
     //TODO: Update the values for $host, $user, $pwd, and $db
     //using the values you retrieved earlier from the portal.
-    $host = "us-cdbr-azure-west-c.cloudapp.net";
-    $user = "b411a3239c5914";
-    $pwd = "7aee971d";
-    $db = "acsm_ac58c273e12d294";
+    $host = "https://rempahstudio.azurewebsites.net/";
+    $user = "umroini";
+    $pwd = "Befriend1";
+    $db = "rempahappserver.database.windows.net";
 
     // Connect to database.
     try {
@@ -45,6 +47,7 @@
     try {
         $name = $_POST['name'];
         $email = $_POST['email'];
+        $job = $_POST['job'];
         $date = date("Y-m-d");
         // Insert data
         $sql_insert = "INSERT INTO registration_tbl (name, email, date)
@@ -52,7 +55,8 @@
         $stmt = $conn->prepare($sql_insert);
         $stmt->bindValue(1, $name);
         $stmt->bindValue(2, $email);
-        $stmt->bindValue(3, $date);
+        $stmt->bindValue(3, $job);
+        $stmt->bindValue(4, $date);
         $stmt->execute();
     }
     catch(Exception $e) {
@@ -61,7 +65,7 @@
     echo "<h3>Your're registered!</h3>";
     }
     // Retrieve data
-    $sql_select = "SELECT * FROM registration_tbl";
+    $sql_select = "SELECT * FROM [dbo].[Team]";
     $stmt = $conn->query($sql_select);
     $registrants = $stmt->fetchAll();
     if(count($registrants) > 0) {
@@ -69,10 +73,12 @@
         echo "<table>";
         echo "<tr><th>Name</th>";
         echo "<th>Email</th>";
+        echo "<th>Job</th>";
         echo "<th>Date</th></tr>";
         foreach($registrants as $registrant) {
             echo "<tr><td>".$registrant['name']."</td>";
             echo "<td>".$registrant['email']."</td>";
+            echo "<td>".$registrant['job']."</td>";
             echo "<td>".$registrant['date']."</td></tr>";
         }
         echo "</table>";
