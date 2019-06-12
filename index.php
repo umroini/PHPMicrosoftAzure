@@ -17,7 +17,7 @@
 </head>
 <body>
 <h1>Hi, Rempah Team!</h1>
-<p>Please fill your name, email, and job, then click <strong>Submit</strong> to register.</p>
+<p>Please fill your name, email address, and job. Then click <strong>Submit</strong> to register.</p>
 <form method="post" action="index.php" enctype="multipart/form-data" >
       Name  <input type="text" name="name" id="name"/></br></br>
       Email <input type="text" name="email" id="email"/></br></br>
@@ -40,13 +40,13 @@
     
     if(isset($_POST['submit'])) {
     try {
-        $name = $_POST['name'];
+        $name  = $_POST['name'];
         $email = $_POST['email'];
-        $job = $_POST['job'];
-        $date = date("Y-m-d");
+        $job   = $_POST['job'];
+        $date  = date("Y-m-d");
         
         $sql_insert = "INSERT INTO Team (name, email, job, date)
-                   VALUES (?,?,?,?)";
+                      VALUES (?,?,?,?)";
         $stmt = $conn->prepare($sql_insert);
         $stmt->bindValue(1, $name);
         $stmt->bindValue(2, $email);
@@ -73,7 +73,7 @@
         echo "<th>Date</th></tr>";
         foreach($registrants as $registrant) {
             echo "<tr><td>".$registrant['Name']."</td>";
-            echo "<td>".$registrantr['Email']."</td>";
+            echo "<td>".$registrant['Email']."</td>";
             echo "<td>".$registrant['Job']."</td>";
             echo "<td>".$registrant['Date']."</td></tr>";
         }
