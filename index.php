@@ -18,10 +18,10 @@
 <body>
 <h1>Hi, Rempah Team!</h1>
 <p>Please fill your name, email, and job, then click <strong>Submit</strong> to register.</p>
-<form method="post" action="index.php" enctype="multipart/form-data">
-      Name  <input type="text" name="name" id="name"/></br>
-      Email <input type="text" name="email" id="email"/></br>
-      Job  <input type="text" name="job" id="job"/></br>
+<form method="post" action="index.php" enctype="multipart/form-data" >
+    Name  <input type="text" name="name" id="name"/></br></br>
+      Email <input type="text" name="email" id="email"/></br></br>
+      Job  <input type="text" name="job" id="job"/></br></br>
       <input type="submit" name="submit" value="Submit" />
       <input type="submit" name="load_data" value="Load Data" />
 </form>
@@ -32,7 +32,7 @@
     $db = "rempahdb";
 
     try {
-        $conn = new PDO( "sqlsrv:server = $host; database=$db", $user, $pass);
+        $conn = new PDO( "sqlsrv:server = $host; Database = $db", $user, $pass);
         $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     }
     catch(Exception $e){
@@ -62,7 +62,7 @@
     echo "<h3>Your're registered!</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
-    // Retrieve data
+   
     $sql_select = "SELECT * FROM Team";
     $stmt = $conn->query($sql_select);
     $registrants = $stmt->fetchAll();
@@ -74,10 +74,10 @@
         echo "<th>Job</th>";
         echo "<th>Date</th></tr>";
         foreach($registrants as $registrant) {
-            echo "<tr><td>".$registrant['name']."</td>";
-            echo "<td>".$registrantr['email']."</td>";
-            echo "<td>".$registrant['job']."</td>";
-            echo "<td>".$registrant['date']."</td></tr>";
+            echo "<tr><td>".$registrant['Name']."</td>";
+            echo "<td>".$registrantr['Email']."</td>";
+            echo "<td>".$registrant['Job']."</td>";
+            echo "<td>".$registrant['Date']."</td></tr>";
         }
         echo "</table>";
     } else {
