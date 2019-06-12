@@ -43,7 +43,7 @@
         $name = $_POST['name'];
         $email = $_POST['email'];
         $job = $_POST['job'];
-        $date = date("D-m-y");
+        $date = date("Y-m-d");
         
         $sql_insert = "INSERT INTO Team (name, email, job, date)
                    VALUES (?,?,?,?)";
