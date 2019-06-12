@@ -1,6 +1,6 @@
 <html>
 <head>
-<Title>Registration Form</Title>
+<Title>Registration Rempah Studio</Title>
 <style type="text/css">
     body { background-color: #fff; border-top:0 solid 10px #000;
         color: #333; font-size: .85em ; margin: 20 ; padding:20;
@@ -19,9 +19,9 @@
 <h1>Hi, Rempah Team!</h1>
 <p>Please fill your name, email, and job, then click <strong>Submit</strong> to register.</p>
 <form method="post" action="index.php" enctype="multipart/form-data" >
-    Name  <input type="text" name="name" id="name"/></br></br>
+      Name  <input type="text" name="name" id="name"/></br></br>
       Email <input type="text" name="email" id="email"/></br></br>
-      Job  <input type="text" name="job" id="job"/></br></br>
+      Job   <input type="text" name="job" id="job"/></br></br>
       <input type="submit" name="submit" value="Submit" />
       <input type="submit" name="load_data" value="Load Data" />
 </form>
@@ -34,8 +34,7 @@
     try {
         $conn = new PDO( "sqlsrv:server = $host; Database = $db", $user, $pass);
         $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    }
-    catch(Exception $e){
+    } catch(Exception $e){
         echo "Failed Connect: " . $e;
     }
     
@@ -44,7 +43,7 @@
         $name = $_POST['name'];
         $email = $_POST['email'];
         $job = $_POST['job'];
-        $date = date("Y-m-d");
+        $date = date("D-m-y");
         
         $sql_insert = "INSERT INTO Team (name, email, job, date)
                    VALUES (?,?,?,?)";
@@ -54,8 +53,7 @@
         $stmt->bindValue(3, $job);
         $stmt->bindValue(4, $date);
         $stmt->execute();
-    }
-    catch(Exception $e) {
+    } catch(Exception $e) {
         echo "Failed insert: " . $e;
     }
         
