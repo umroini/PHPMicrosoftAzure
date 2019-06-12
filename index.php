@@ -6,7 +6,7 @@
         color: #333; font-size: .85em; margin:4px 8px 16px 32px; padding:50;
         font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     }
-    h1, h2, h3,{ color: #000; margin-bottom: 0; padding-bottom: 0; }
+    h1, h2, h3,{ color: #000; margin-bottom: 0; padding-bottom: 10; }
     h1 { font-size: 2em; }
     h2 { font-size: 1.75em; }
     h3 { font-size: 1.2em; }
