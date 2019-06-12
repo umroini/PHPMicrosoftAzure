@@ -17,12 +17,14 @@
 </head>
 <body>
 <h1>Hi, Rempah Team!</h1>
-<p>Please fill your name, email address, and job. Then click <strong>Submit</strong> to register.</p>
+<p>Please fill your name, email address, job, and gender. Then click <strong>Submit</strong> to register.</p>
 <form method="post" action="index.php" enctype="multipart/form-data" >
       Name  <input type="text" name="name" id="name"/></br></br>
       Email <input type="text" name="email" id="email"/></br></br>
       Job   <input type="text" name="job" id="job"/></br></br>
-      <input type="submit" name="submit" value="Submit" color= #2C97DF; />
+      Gender <input type = "radio" name = "gender" value = "Male"/>
+            <input type = "radio" name = "gender" value = "Female"/></br></br>
+      <input type="submit" name="submit" value="Submit" />
       <input type="submit" name="load_data" value="Load Data" />
 </form>
 <?php
@@ -43,15 +45,17 @@
         $name  = $_POST['name'];
         $email = $_POST['email'];
         $job   = $_POST['job'];
+        $genre = $_POST['gender'];
         $date  = date("Y-m-d");
         
-        $sql_insert = "INSERT INTO Team (name, email, job, date)
-                      VALUES (?,?,?,?)";
+        $sql_insert = "INSERT INTO Team (name, email, job, gender, date)
+                      VALUES (?,?,?,?,?)";
         $stmt = $conn->prepare($sql_insert);
         $stmt->bindValue(1, $name);
         $stmt->bindValue(2, $email);
         $stmt->bindValue(3, $job);
-        $stmt->bindValue(4, $date);
+        $stmt->bindValue(4, $gender);
+        $stmt->bindValue(5, $date);
         $stmt->execute();
     } catch(Exception $e) {
         echo "Failed insert: " . $e;
@@ -70,11 +74,13 @@
         echo "<tr><th>Name</th>";
         echo "<th>Email</th>";
         echo "<th>Job</th>";
+        echo "<th>Gender</th>";
         echo "<th>Date</th></tr>";
         foreach($registrants as $registrant) {
             echo "<tr><td>".$registrant['Name']."</td>";
             echo "<td>".$registrant['Email']."</td>";
             echo "<td>".$registrant['Job']."</td>";
+            echo "<td>".$registrant['Gender']."</td>";
             echo "<td>".$registrant['Date']."</td></tr>";
         }
         echo "</table>";
