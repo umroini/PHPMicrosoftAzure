@@ -22,7 +22,7 @@
       Name  <input type="text" name="name" id="name"/></br></br>
       Email <input type="text" name="email" id="email"/></br></br>
       Job   <input type="text" name="job" id="job"/></br></br>
-      <input type="submit" name="submit" value="Submit" />
+      <input type="submit" name="submit" value="Submit" color= #2C97DF; />
       <input type="submit" name="load_data" value="Load Data" />
 </form>
 <?php
