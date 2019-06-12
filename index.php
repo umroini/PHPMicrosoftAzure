@@ -3,7 +3,7 @@
 <Title>Registration Form</Title>
 <style type="text/css">
     body { background-color: #fff; border-top: solid 10px #000;
-        color: #333; font-size: .85em; margin: 20; padding: 20;
+        color: #333; font-size: .85em; margin: 50; padding: 20;
         font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     }
     h1, h2, h3,{ color: #000; margin-bottom: 0; padding-bottom: 0; }
