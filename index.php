@@ -6,7 +6,7 @@
         color: #333; font-size: .85em; margin: 20 ; padding:20;
         font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     }
-    h1, h2, h3,{ color: #000; margin-bottom: 10; padding-bottom: 50; }
+    h1, h2, h3,{ color: #000; margin-bottom: 0; padding-bottom: 0; }
     h1 { font-size: 2em; }
     h2 { font-size: 1.75em; }
     h3 { font-size: 1.2em; }
@@ -65,19 +65,19 @@
     // Retrieve data
     $sql_select = "SELECT * FROM Team";
     $stmt = $conn->query($sql_select);
-    $registers = $stmt->fetchAll();
-    if(count($registers) > 0) {
-        echo "<h2>People who are registered:</h2>";
+    $registrants = $stmt->fetchAll();
+    if(count($registrants) > 0) {
+        echo "<h2>Team who are registered:</h2>";
         echo "<table>";
         echo "<tr><th>Name</th>";
         echo "<th>Email</th>";
         echo "<th>Job</th>";
         echo "<th>Date</th></tr>";
-        foreach($registers as $register) {
-            echo "<tr><td>".$register['name']."</td>";
-            echo "<td>".$register['email']."</td>";
-            echo "<td>".$register['job']."</td>";
-            echo "<td>".$register['date']."</td></tr>";
+        foreach($registrants as $registrant) {
+            echo "<tr><td>".$registrant['name']."</td>";
+            echo "<td>".$registrantr['email']."</td>";
+            echo "<td>".$registrant['job']."</td>";
+            echo "<td>".$registrant['date']."</td></tr>";
         }
         echo "</table>";
     } else {
