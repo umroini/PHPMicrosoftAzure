@@ -45,7 +45,7 @@
         $name  = $_POST['name'];
         $email = $_POST['email'];
         $job   = $_POST['job'];
-        $genre = $_POST['gender'];
+        $gender = $_POST['gender'];
         $date  = date("Y-m-d");
         
         $sql_insert = "INSERT INTO Team (name, email, job, gender, date)
