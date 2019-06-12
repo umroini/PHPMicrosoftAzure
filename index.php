@@ -18,7 +18,7 @@
 <body>
 <h1>Hi, Rempah Team!</h1>
 <p>Please fill your name, email, and job, then click <strong>Submit</strong> to register.</p>
-<form method="post" action="index.php">
+<form method="post" action="index.php" enctype="multipart/form-data">
       Name  <input type="text" name="name" id="name"/></br>
       Email <input type="text" name="email" id="email"/></br>
       Job  <input type="text" name="job" id="job"/></br>
@@ -26,30 +26,26 @@
       <input type="submit" name="submit" value="Load Data" />
 </form>
 <?php
-    // DB connection info
-    //TODO: Update the values for $host, $user, $pwd, and $db
-    //using the values you retrieved earlier from the portal.
     $host = "rempahappserver.database.windows.net";
     $user = "umroini";
     $pass = "Befriend1";
     $db = "rempahdb";
 
-    // Connect to database.
     try {
-        $conn = new PDO( "sqlsrv:host=$host; database=$db", $user, $pass);
+        $conn = new PDO( "sqlsrv:server = $host; database=$db", $user, $pass);
         $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     }
     catch(Exception $e){
-        echo "Failed Connect: ".$e;
+        echo "Failed Connect: " . $e;
     }
-    // Insert registration info
+    
     if(isset($_POST['submit'])) {
     try {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $job = $_POST['job'];
         $date = date("Y-m-d");
-        // Insert data
+        
         $sql_insert = "INSERT INTO Team (name, email, job, date)
                    VALUES (?,?,?,?)";
         $stmt = $conn->prepare($sql_insert);
@@ -60,33 +56,34 @@
         $stmt->execute();
     }
     catch(Exception $e) {
-        echo "Failed insert: ".$e;
+        echo "Failed insert: " . $e;
     }
+        
     echo "<h3>Your're registered!</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
     // Retrieve data
     $sql_select = "SELECT * FROM Team";
     $stmt = $conn->query($sql_select);
-    $teams = $stmt->fetchAll();
-    if(count($teams) > 0) {
+    $registers = $stmt->fetchAll();
+    if(count($registers) > 0) {
         echo "<h2>People who are registered:</h2>";
         echo "<table>";
         echo "<tr><th>Name</th>";
         echo "<th>Email</th>";
         echo "<th>Job</th>";
         echo "<th>Date</th></tr>";
-        foreach($teams as $team) {
-            echo "<tr><td>".$team['name']."</td>";
-            echo "<td>".$team['email']."</td>";
-            echo "<td>".$team['job']."</td>";
-            echo "<td>".$team['date']."</td></tr>";
+        foreach($registers as $register) {
+            echo "<tr><td>".$register['name']."</td>";
+            echo "<td>".$register['email']."</td>";
+            echo "<td>".$register['job']."</td>";
+            echo "<td>".$register['date']."</td></tr>";
         }
         echo "</table>";
     } else {
         echo "<h3>No one is currently registered.</h3>";
     }
-        } catch(Exception $e) {
+ } catch(Exception $e) {
             echo "Failed List: " . $e;
         }
     }
