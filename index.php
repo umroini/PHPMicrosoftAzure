@@ -29,9 +29,9 @@
 </form>
 <?php
     $host = "rempahappserver.database.windows.net";
-    $user = "umroini";
-    $pass = "Befriend1";
-    $db = "rempahdb";
+    $user = "USER RAHASIA";
+    $pass = "PASS RAHASIA";
+    $db = "DATABASE RAHASIA";
 
     try {
         $conn = new PDO( "sqlsrv:server = $host; Database = $db", $user, $pass);
